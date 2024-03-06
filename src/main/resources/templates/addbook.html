@@ -10,55 +10,77 @@
 		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
+<script type="text/javascript">
+	function fun() {
+		document.getElementById('id').value = '';
+		document.getElementById('name').value = '';
+		document.getElementById('serial').value = '';
+		document.getElementById('author').value = '';
+		document.getElementById('edition').value = '';
+		document.getElementById('active').value = '';
+	}
+	function submitForm() {
+		var frm = document.getElementsByName('contact-form')[0];
+		//frm.submit(); // Submit the form
+		frm.reset();  // Reset all form data
+		return false; // Prevent page refresh
+	}
+
+
+</script>
+
 <body>
 	<h1>Welocome to Book store!</h1>
 	<div class="container">
 		<a href="/book" class="btn btn-info mb-3">Back</a>
 
-		<form th:action="@{/save}" th:object="${newbook}" method="post">
+		<form th:action="@{/save}" th:object="${newbook}" name="contact-form" method="post">
 			<table class="table table-secondary table-bordered  w-50 p-3">
 
 				<tr>
 					<td>Book Id :</td>
 					<td>
-						<input type="hidden" th:field="*{bookId}" />
+						<input type="hidden" th:field="*{bookId}" id="id" />
 					</td>
 				</tr>
 				<tr>
 					<td>Book Name :</td>
 					<td>
-						<input type="text" th:field="*{bookName}" required />
+						<input type="text" th:field="*{bookName}" placeholder="Enter Book Name" id="name" required />
 					</td>
 				</tr>
 				<tr>
-					<td>bookSerialId</td>
+					<td>Book SerialId :</td>
 					<td>
-						<input type="text" th:field="*{bookSerialId}" />
+						<input type="number" pattern="[0-9]{10}" placeholder="Enter Book serialId" id="serial"
+							th:field="*{bookSerialId}" />
 					</td>
 				<tr>
-					<td>authorName</td>
+					<td>Author Name :</td>
 					<td>
-						<input type="text" th:field="*{authorName}" />
-					</td>
-				</tr>
-				<tr>
-					<td>edition</th>
-					<td>
-						<input type="text" th:field="*{edition}" />
+						<input type="text" th:field="*{authorName}" placeholder="Enter Author Name" id="author" />
 					</td>
 				</tr>
 				<tr>
+					<td>Edition :</th>
 					<td>
-					<label for="isActive">Active</label> <br></td>
+						<input type="text" th:field="*{edition}" placeholder="Enter Book Edition" id="edition" />
+					</td>
+				</tr>
+				<tr>
 					<td>
-					<input type="radio" th:field="*{isActive}" value="1" required>Yes
-					<input type="radio" th:field="*{isActive}" value="0" > No<br>
+						<label for="isActive">Active :</label> <br>
+					</td>
+					<td>
+						<input type="radio" th:field="*{isActive}" value="1" id="active" required>Yes
+						<input type="radio" th:field="*{isActive}" value="0"> No<br>
 					</td>
 				</tr>
 				<tr>
 					<td></td>
 					<td>
-						<input type="submit" value="save" />
+						<input type="button" value="Submit" id="btnsubmit" onclick="submitForm()">
+						<input type="submit" onclick="fun()" value="save" />
 					</td>
 				</tr>
 

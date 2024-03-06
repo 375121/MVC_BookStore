@@ -1,11 +1,11 @@
 package com.pappucoder.in.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -13,9 +13,11 @@ import com.pappucoder.in.entity.Books;
 import com.pappucoder.in.service.BookService;
 
 @Controller
+//@RequestMapping("/book")
 public class BookController {
 	 
 	private BookService bookService;
+	
 	
 	public BookController(BookService bookService) {
 		this.bookService=bookService;
@@ -24,16 +26,7 @@ public class BookController {
 	@GetMapping("/book")
 	public ModelAndView mainBookPage() {
 
-//		List<Books> bookList= new ArrayList<>();
-		Books book = new Books();
-		book.setAuthorName("Mad Man");
-		book.setBookId(123l);
-		book.setBookName("JAVA");
-		book.setBookSerialId("1234l");
-		book.setEdition("2nd");
-		book.setIsActive(true);
 		List<Books> bookList = bookService.getAllBookDetails();
-		bookList.add(book);
 		
 		ModelAndView model = new ModelAndView();
 		model.addObject("bookList",bookList);

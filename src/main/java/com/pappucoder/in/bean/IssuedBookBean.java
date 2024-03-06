@@ -4,11 +4,13 @@ import java.util.Date;
 
 public class IssuedBookBean {
 
-	private Long issuedId;
-
 	private Long bookId;
+	
+	private String bookName;
 
 	private Long studentId;
+	
+	private String studentName;
 
 	private String remark;
 
@@ -20,24 +22,17 @@ public class IssuedBookBean {
 
 	private Boolean isActive;
 
-	private Date lastUpdateDate;
 
 	public Long getBookId() {
 		return bookId;
 	}
 
-	public Long getIssuedId() {
-		return issuedId;
-	}
+	
 
 	public void setBookId(Long bookId) {
 		this.bookId = bookId;
 	}
 	
-	public void setIssuedId(Long issuedId) {
-		this.issuedId = issuedId;
-	}
-
 	public Long getStudentId() {
 		return studentId;
 	}
@@ -86,19 +81,11 @@ public class IssuedBookBean {
 		this.isActive = isActive;
 	}
 
-	public Date getLastUpdateDate() {
-		return lastUpdateDate;
-	}
-
-	public void setLastUpdateDate(Date lastUpdateDate) {
-		this.lastUpdateDate = lastUpdateDate;
-	}
-
 	@Override
 	public String toString() {
-		return "IssuedBookBean [bookId=" + bookId + ", issuedId=" + issuedId + ", studentId=" + studentId + ", remark=" + remark + ", issueDate="
+		return "IssuedBookBean [bookId=" + bookId + ", studentId=" + studentId + ", remark=" + remark + ", issueDate="
 				+ issueDate + ", returnDate=" + returnDate + ", issueExpireDate=" + issueExpireDate + ", isActive="
-				+ isActive + ", lastUpdateDate=" + lastUpdateDate + "]";
+				+ isActive + "]";
 	}
 
 }

@@ -1,9 +1,7 @@
 package com.pappucoder.in.serviceimpl;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.pappucoder.in.entity.Student;
@@ -13,33 +11,47 @@ import com.pappucoder.in.service.StudentService;
 @Service
 public class StudentServiceImpl implements StudentService {
 
-	@Value("${app.bookstore.issuedDays}")
-	private String issuedDays;
-
 	private StudentRepository studentRepository;
 
 	public StudentServiceImpl(StudentRepository studentRepository) {
 		this.studentRepository = studentRepository;
 	}
 
-	public void saveStudentDetails() {
-		Date date = new Date();
-//		Student student = new Student("stdName", date, getExpirationDateForAwsS3(), 1234L);
+	public void saveStudentDetails(Student student) {
 
-//		studentRepository.save(student);
+		studentRepository.save(student);
 	}
 
-	private Date getExpirationDateForAwsS3() {
-		java.util.Date expiration = new java.util.Date();
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(expiration);
-		int daysToAdd = Integer.parseInt(issuedDays);
-		cal.add(Calendar.DAY_OF_YEAR, daysToAdd);
-		return cal.getTime();
+	public List<Student> getAllActiveStudent() {
+
+		List<Student> activeStudentList = studentRepository.findByIsActiveTrue();
+
+		return activeStudentList;
 	}
 
-//	private String dateFormattor(Date date) {
-//	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-//	return formatter.format(date);
-//}
+	public List<Student> getAllBlockedStudent() {
+
+		List<Student> bolckedStudentList = studentRepository.findByBolckedTrue();
+
+		return bolckedStudentList;
+	}
+
+	public Student getStudent(Long studentId) {
+		
+		Student student = studentRepository.findByStudentId(studentId);
+		
+		return student;
+	}
+
+	@Override
+	public List<Student> getAllStudent() {
+		List<Student> allStudents = studentRepository.findAll();
+		return allStudents;
+	}
+
+	@Override
+	public void deleteStudent(Long studentId) {
+		studentRepository.delete(this.getStudent(studentId));
+	}
+
 }

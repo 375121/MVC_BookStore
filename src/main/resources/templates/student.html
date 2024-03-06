@@ -11,7 +11,7 @@
 
 <script type="text/javascript">
 	function confrimDelete(){
-		return confirm("Do want remove this book ?")
+		return confirm("Do want remove this student ?")
 	}
 	
 </script>
@@ -21,32 +21,36 @@
 <body>
 	<h1>Welocome to Book store!</h1>
 	<div class="container">
-		<a href="/add" class="btn btn-info mb-3">Add New Book</a>
+		<a href="/student/addstudent" class="btn btn-info mb-3">Add New Student</a>
 
 		<table class="table table-bordered border-primary">
 			<thead class="table-primary">
 				<tr>
-					<th>bookId</th>
-					<th>bookSerialId</th>
-					<th>bookName</th>
-					<th>authorName</th>
-					<th>edition</th>
-					<th>isActive</th>
+					<th>studentId</th>
+					<th>studentName</th>
+					<th>semester</th>
+					<th>unNumber</th>
+					<th>bookIssued</th>
+					<th>dueAmount</th>
+					<th>bolcked</th>
+					<th>remark</th>
 					<th>perform</th>
 				</tr>
 			</thead>
 			<tbody class="table-secondary">
 				
-				<tr th:each="b : ${bookList}">
-					<td th:text="${b.bookId}"></td>
-					<td th:text="${b.bookSerialId}"></td>
-					<td th:text="${b.bookName}"></td>
-					<td th:text="${b.authorName}"></td>
-					<td th:text="${b.edition != null} ? ${b.edition} : 'Not Return'"></td>
-					<td th:text="${b.isActive}"></td>
+				<tr th:each="b : ${allStudentList}">
+					<td th:text="${b.studentId}"></td>
+					<td th:text="${b.studentName}"></td>
+					<td th:text="${b.semester}"></td>
+					<td th:text="${b.unNumber}"></td>
+					<td th:text="${b.bookIssued}"></td>
+					<td th:text="${b.dueAmount != null} ? ${b.dueAmount} : 'No due'"></td>
+					<td th:text="${b.bolcked}"></td>
+					<td th:text="${b.remark}"></td>
 					<td>
-						<a th:href="@{/edit?(bookId=${b.bookId})}" class="btn btn-primary mb-3">Edit</a>
-						<a th:href="@{/delete?(bookId=${b.bookId})}" onclick="return confrimDelete()" class="btn btn-danger mb-3" >Remove</a>
+						<a th:href="@{/student/edit?(studentId=${b.studentId})}" class="btn btn-primary mb-3">Edit</a>
+						<a th:href="@{/student/delete?(studentId=${b.studentId})}" onclick="return confrimDelete()" class="btn btn-danger mb-3" >Remove</a>
 					</td>
 				</tr>
 			</tbody>

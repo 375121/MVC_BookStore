@@ -18,18 +18,16 @@ public class IssueDetails {
 
 	private Long studentId;
 
-	private String remark;
-
 	private Date issueDate;
 
 	private Date returnDate;
 	
 	private Date issueExpireDate;
 	
+	private String remark;
+	
 	private Boolean isActive;
 	
-	private Date lastUpdateDate;
-
 	public Long getIssuedId() {
 		return issuedId;
 	}
@@ -94,21 +92,12 @@ public class IssueDetails {
 		this.isActive = isActive;
 	}
 
-	public Date getLastUpdateDate() {
-		return lastUpdateDate;
-	}
-
-	public void setLastUpdateDate(Date lastUpdateDate) {
-		this.lastUpdateDate = lastUpdateDate;
-	}
 
 	@Override
 	public String toString() {
 		return "IssueDetails [issuedId=" + issuedId + ", bookId=" + bookId + ", studentId=" + studentId + ", remark="
 				+ remark + ", issueDate=" + issueDate + ", returnDate=" + returnDate + ", issueExpireDate="
-				+ issueExpireDate + ", isActive=" + isActive + ", lastUpdateDate=" + lastUpdateDate + "]";
+				+ issueExpireDate + ", isActive=" + isActive + "]";
 	}
-	
-	
 
 }
